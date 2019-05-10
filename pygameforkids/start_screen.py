@@ -14,7 +14,7 @@ class StartScreen:
         self.play = self.play_images[0]
 
     def run(self):
-        while True:
+        while not self.start:
             self.events()
             self.update()
 
@@ -35,6 +35,6 @@ class StartScreen:
         if pygame.Rect(*self.play[1], *self.play[0].get_rect().size).collidepoint(*pos):
             self.play = self.play_images[1]
             if mouse_pressed:
-                print(1)
+                self.start = True
         else:
             self.play = self.play_images[0]
