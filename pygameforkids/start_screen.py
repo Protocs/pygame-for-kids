@@ -1,12 +1,17 @@
 import pygame
 from .other import load_image, terminate, SIZE
 
+
 class StartScreen:
     def __init__(self, surface):
         self.surface = surface
         self.background = load_image("start_background.png")
-        self.play_button = load_image("play.png")
         self.start = False
+
+        play = load_image("play.png")
+        self.play_images = [(play, (118, 300)),
+                            (pygame.transform.scale(play, (170, 80)), (115, 298))]
+        self.play = self.play_images[0]
 
     def run(self):
         while True:
@@ -18,10 +23,18 @@ class StartScreen:
             if event.type == pygame.QUIT:
                 terminate()
 
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                pass
-
     def update(self):
+        self.mouse_handler()
         self.surface.blit(self.background, (0, 0))
-        self.background.blit(self.play_button, ((SIZE[0] - self.play_button.get_width()) / 2, 300))
+        self.surface.blit(self.play[0], self.play[1])
         pygame.display.flip()
+
+    def mouse_handler(self):
+        pos = pygame.mouse.get_pos()
+        mouse_pressed = pygame.mouse.get_pressed()[0]
+        if pygame.Rect(*self.play[1], *self.play[0].get_rect().size).collidepoint(*pos):
+            self.play = self.play_images[1]
+            if mouse_pressed:
+                print(1)
+        else:
+            self.play = self.play_images[0]
