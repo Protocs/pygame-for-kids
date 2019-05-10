@@ -1,6 +1,7 @@
 import pygame
 from .other import load_image, terminate
 from .player import Player
+from .platform import Platform
 
 
 class Game:
@@ -11,6 +12,7 @@ class Game:
         self.game = True
         self.all_sprites = pygame.sprite.Group()
         self.player = Player(self, self.surface)
+        self.platforms = [Platform(self, self.surface, y) for y in range(0, 700, 100)]
         self.clock = pygame.time.Clock()
 
     def run(self):
@@ -30,6 +32,8 @@ class Game:
         self.surface.blit(self.backgrounds[1][0], self.backgrounds[1][1])
         self.all_sprites.draw(self.surface)
         self.player.update()
+        for platform in self.platforms:
+            platform.update()
         pygame.display.flip()
 
     def background_scrolling(self):
