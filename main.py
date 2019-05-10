@@ -1,8 +1,10 @@
 import pygame
+from pygameforkids.other import SIZE
+from pygameforkids.start_screen import StartScreen
 
 pygame.init()
-SIZE = WIDTH, HEIGHT = 800, 400
 screen = pygame.display.set_mode(SIZE)
 
 while True:
-    pass
+    start = StartScreen(screen)
+    start.run()
