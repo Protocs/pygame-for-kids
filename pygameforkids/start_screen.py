@@ -1,5 +1,5 @@
 import pygame
-from .other import load_image, terminate, SIZE
+from .other import load_image, terminate
 
 
 class StartScreen:

@@ -11,4 +11,5 @@ def terminate():
     pygame.quit()
     exit()
 
+
 SIZE = WIDTH, HEIGHT = 400, 800

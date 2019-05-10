@@ -12,4 +12,3 @@ while True:
     start.run()
     game = Game(screen)
     game.run()
-
