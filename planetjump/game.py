@@ -35,7 +35,8 @@ class Game:
                     self.set_pause()
 
     def update(self):
-        self.background_scrolling()
+        if self.player.rect.y < 380 and self.player.moving:
+            self.background_scrolling(self.player.speeding / 2)
         self.draw_backgrounds()
         self.all_sprites.draw(self.surface)
         self.player.update()
@@ -48,11 +49,11 @@ class Game:
         self.surface.blit(first_bg.image, tuple(first_bg.point))
         self.surface.blit(second_bg.image, tuple(second_bg.point))
 
-    def background_scrolling(self):
+    def background_scrolling(self, dy):
         first_bg, second_bg = self.backgrounds
         if first_bg.point.y <= 800:
-            first_bg.point.y += 1
-            second_bg.point.y += 1
+            first_bg.point.y += dy
+            second_bg.point.y += dy
         else:
             self.backgrounds = [Background(0, 0), Background(0, -800)]
 

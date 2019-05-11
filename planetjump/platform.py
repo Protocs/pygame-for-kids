@@ -8,6 +8,7 @@ from planetjump.utils import load_image
 class Platform(pygame.sprite.Sprite):
     def __init__(self, game, surface, y):
         super().__init__(game.all_sprites)
+        self.game = game
         self.surface = surface
         self.image = load_image("platform.png")
         self.rect = self.image.get_rect()
@@ -16,7 +17,8 @@ class Platform(pygame.sprite.Sprite):
 
     def update(self):
         if self.rect.y <= 800:
-            self.rect.y += 2
+            if self.game.player.rect.y < 380:
+                self.rect.y += self.game.player.speeding
         else:
             self.rect.y = -16
             self.rect.x = randint(0, 323)

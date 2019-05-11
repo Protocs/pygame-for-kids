@@ -31,7 +31,8 @@ class Player(pygame.sprite.Sprite):
             self.rect.x = -22
 
         if self.speeding > 0 and self.moving:
-            self.rect.y -= round(self.speeding)
+            if self.rect.y >= 380:
+                self.rect.y -= self.speeding
             self.speeding -= 0.06
         else:
             self.moving = False
