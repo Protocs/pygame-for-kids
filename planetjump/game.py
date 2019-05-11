@@ -3,6 +3,7 @@ from .other import load_image, terminate
 from .player import Player
 from .platform import Platform
 from .pause_screen import PauseScreen
+from .disappearing_platform import DisappearingPlatform
 
 
 class Game:
@@ -13,7 +14,8 @@ class Game:
         self.game = True
         self.pause = False
         self.all_sprites = pygame.sprite.Group()
-        self.platforms = [Platform(self, self.surface, y) for y in range(0, 800, 100)]
+        self.platforms = [Platform(self, self.surface, y) for y in range(100, 800, 100)]
+        self.platforms.append(DisappearingPlatform(self, self.surface, 0))
         self.player = Player(self, self.surface)
         self.clock = pygame.time.Clock()
 
