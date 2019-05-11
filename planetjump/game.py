@@ -60,3 +60,6 @@ class Game:
     def set_pause(self):
         self.pause = True
         PauseScreen(self)
+
+    def add_disappearing_platform(self):
+        self.platforms.append(DisappearingPlatform(self, self.surface, -16))

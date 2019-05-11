@@ -57,5 +57,8 @@ class Player(pygame.sprite.Sprite):
                     self.speeding = 5
                     self.moving = True
 
+                    if sprite == self.game.platforms[-1]:
+                        sprite.rect.y -= 800
+
     def death(self):
         DeathScreen(self.surface)
