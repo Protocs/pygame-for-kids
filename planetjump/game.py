@@ -6,6 +6,7 @@ from planetjump.player import Player
 from planetjump.platform import Platform
 from planetjump.pause_screen import PauseScreen
 from planetjump.disappearing_platform import DisappearingPlatform
+from planetjump.score import Score
 
 
 class Game:
@@ -15,10 +16,13 @@ class Game:
         self.game = True
         self.pause = False
         self.all_sprites = pygame.sprite.Group()
+        self.score_group = pygame.sprite.Group()
         self.platforms = [Platform(self, self.surface, y) for y in range(100, 800, 100)]
         self.platforms.append(DisappearingPlatform(self, self.surface, 0))
         self.player = Player(self, self.surface)
         self.clock = pygame.time.Clock()
+        self.score_counter = Score(self)
+        self.start_pos = True
 
     def run(self):
         while self.game:
@@ -40,6 +44,8 @@ class Game:
         self.draw_backgrounds()
         self.all_sprites.draw(self.surface)
         self.player.update()
+        self.score_group.draw(self.surface)
+        self.score_counter.update()
         for platform in self.platforms:
             platform.update()
         pygame.display.flip()
@@ -51,6 +57,7 @@ class Game:
 
     def background_scrolling(self, dy):
         first_bg, second_bg = self.backgrounds
+        self.start_pos = False
         if first_bg.point.y <= 800:
             first_bg.point.y += dy
             second_bg.point.y += dy

@@ -1,4 +1,5 @@
 import pygame
+import pickle
 
 from os import path
 
@@ -25,6 +26,24 @@ def handle_close(event):
 def terminate():
     pygame.quit()
     exit()
+
+
+def save_progress(progress):
+    try:
+        with open("best_progress.txt", "wb") as f:
+            pickle.dump(progress, f, pickle.HIGHEST_PROTOCOL)
+    except OSError:
+        pass
+
+
+def load_best_progress():
+    try:
+        with open("best_progress.txt", "rb") as f:
+            return pickle.load(f)
+    except OSError:
+        pass
+    except pickle.PickleError:
+        pass
 
 
 SIZE = WIDTH, HEIGHT = 400, 800

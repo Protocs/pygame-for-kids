@@ -1,6 +1,6 @@
 import pygame
 
-from planetjump.utils import load_image
+from planetjump.utils import load_image, load_best_progress, save_progress
 from planetjump.death_screen import DeathScreen
 
 
@@ -15,6 +15,8 @@ class Player(pygame.sprite.Sprite):
         self.rect.y = 800
         self.speeding = 5
         self.moving = True
+        self.score = 0
+        self.best_score = load_best_progress()
 
     def update(self):
         self.key_handle()
@@ -33,6 +35,10 @@ class Player(pygame.sprite.Sprite):
         if self.speeding > 0 and self.moving:
             if self.rect.y >= 380:
                 self.rect.y -= self.speeding
+                if self.game.start_pos:
+                    self.score += 1
+            elif self.rect.y < 380:
+                self.score += 1
             self.speeding -= 0.06
         else:
             self.moving = False
@@ -61,4 +67,12 @@ class Player(pygame.sprite.Sprite):
                         sprite.rect.y -= 800
 
     def death(self):
-        DeathScreen(self.surface)
+        try:
+            if self.score > self.best_score:
+                save_progress(self.score)
+        except:
+            save_progress(self.score)
+
+        self.game.score_counter.rect.x = (400 - self.game.score_counter.rect.width) / 2
+        self.game.score_counter.rect.y = 200
+        DeathScreen(self.surface, self.game.score_group, self.game.score_counter)
