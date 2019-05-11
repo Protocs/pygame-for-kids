@@ -1,6 +1,7 @@
 import pygame
 
 from .other import load_image
+from .death_screen import DeathScreen
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, game, surface):
@@ -17,6 +18,10 @@ class Player(pygame.sprite.Sprite):
     def update(self):
         self.key_handle()
         self.find_collide()
+
+        if self.rect.y >= 800 and not self.moving:
+            self.death()
+            self.game.__init__(self.surface)
 
         if self.rect.x <= -23:
             self.rect.x = 377
@@ -40,3 +45,8 @@ class Player(pygame.sprite.Sprite):
         if pygame.key.get_pressed()[pygame.K_RIGHT]:
             self.rect.x += 4
 
+    def find_collide(self):
+        pass
+
+    def death(self):
+        DeathScreen(self.surface)
