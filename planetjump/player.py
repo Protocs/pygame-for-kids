@@ -32,12 +32,12 @@ class Player(pygame.sprite.Sprite):
 
         if self.speeding > 0 and self.moving:
             self.rect.y -= round(self.speeding)
-            self.speeding -= 0.03
+            self.speeding -= 0.06
         else:
             self.moving = False
 
         if not self.moving:
-            self.speeding += 0.03
+            self.speeding += 0.1
             self.rect.y += round(self.speeding)
 
     def key_handle(self):
