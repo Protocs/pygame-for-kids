@@ -2,6 +2,7 @@ import pygame
 from .other import load_image, terminate
 from .player import Player
 from .platform import Platform
+from .pause_screen import PauseScreen
 
 
 class Game:
@@ -10,6 +11,7 @@ class Game:
         self.backgrounds = [[load_image("background.png"), (0, 0)],
                             [load_image("background.png"), (0, -800)]]
         self.game = True
+        self.pause = False
         self.all_sprites = pygame.sprite.Group()
         self.platforms = [Platform(self, self.surface, y) for y in range(0, 800, 100)]
         self.player = Player(self, self.surface)
@@ -25,6 +27,10 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 terminate()
+
+            if event.type == pygame.KEYDOWN:
+                if pygame.key.get_pressed()[pygame.K_ESCAPE]:
+                    self.set_pause()
 
     def update(self):
         self.background_scrolling()
@@ -44,3 +50,7 @@ class Game:
         else:
             self.backgrounds = [[load_image("background.png"), (0, 0)],
                                 [load_image("background.png"), (0, -800)]]
+
+    def set_pause(self):
+        self.pause = True
+        PauseScreen(self)
