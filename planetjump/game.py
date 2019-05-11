@@ -9,8 +9,7 @@ from .disappearing_platform import DisappearingPlatform
 class Game:
     def __init__(self, surface):
         self.surface = surface
-        self.backgrounds = [[load_image("background.png"), (0, 0)],
-                            [load_image("background.png"), (0, -800)]]
+        self.backgrounds = [Background(0, 0), Background(0, -800)]
         self.game = True
         self.pause = False
         self.all_sprites = pygame.sprite.Group()
@@ -36,22 +35,26 @@ class Game:
 
     def update(self):
         self.background_scrolling()
-        self.surface.blit(self.backgrounds[0][0], self.backgrounds[0][1])
-        self.surface.blit(self.backgrounds[1][0], self.backgrounds[1][1])
+        self.draw_backgrounds()
         self.all_sprites.draw(self.surface)
         self.player.update()
         for platform in self.platforms:
             platform.update()
         pygame.display.flip()
 
-    def background_scrolling(self):
-        if self.backgrounds[0][1][1] <= 800:
-            self.backgrounds[0][1] = self.backgrounds[0][1][0], self.backgrounds[0][1][1] + 1
-            self.backgrounds[1][1] = self.backgrounds[1][1][0], self.backgrounds[1][1][1] + 1
+    def draw_backgrounds(self):
+        first_bg, second_bg = self.backgrounds
+        self.surface.blit(first_bg.image, tuple(first_bg.point))
+        self.surface.blit(second_bg.image, tuple(second_bg.point))
 
+    # def swap_backgrounds(self):
+    def background_scrolling(self):
+        first_bg, second_bg = self.backgrounds
+        if first_bg.point.y <= 800:
+            first_bg.point.y += 1
+            second_bg.point.y += 1
         else:
-            self.backgrounds = [[load_image("background.png"), (0, 0)],
-                                [load_image("background.png"), (0, -800)]]
+            self.backgrounds = [Background(0, 0), Background(0, -800)]
 
     def set_pause(self):
         self.pause = True
