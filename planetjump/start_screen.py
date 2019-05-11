@@ -7,7 +7,7 @@ class StartScreen:
         self.surface = surface
         self.background = load_image("start_background.png")
         self.start = False
-
+        self.logo = load_image("logo.png")
         play = load_image("play.png")
         self.play_images = [(play, (118, 300)),
                             (pygame.transform.scale(play, (170, 80)), (115, 298))]
@@ -26,6 +26,7 @@ class StartScreen:
     def update(self):
         self.mouse_handler()
         self.surface.blit(self.background, (0, 0))
+        self.surface.blit(self.logo, (57, 100))
         self.surface.blit(self.play[0], self.play[1])
         pygame.display.flip()
 
