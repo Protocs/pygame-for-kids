@@ -11,7 +11,7 @@ class Game:
                             [load_image("background.png"), (0, -800)]]
         self.game = True
         self.all_sprites = pygame.sprite.Group()
-        self.platforms = [Platform(self, self.surface, y) for y in range(0, 700, 100)]
+        self.platforms = [Platform(self, self.surface, y) for y in range(0, 800, 100)]
         self.player = Player(self, self.surface)
         self.clock = pygame.time.Clock()
 

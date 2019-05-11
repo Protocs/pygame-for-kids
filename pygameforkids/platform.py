@@ -13,4 +13,8 @@ class Platform(pygame.sprite.Sprite):
         self.rect.y = y
 
     def update(self):
-        self.rect.y += 2
+        if self.rect.y <= 800:
+            self.rect.y += 2
+        else:
+            self.rect.y = -16
+            self.rect.x = randint(0, 323)
