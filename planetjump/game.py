@@ -35,7 +35,7 @@ class Game:
                     self.set_pause()
 
     def update(self):
-        if self.player.rect.y < 380 and self.player.moving:
+        if self.player.rect.y <= 380 and self.player.moving:
             self.background_scrolling(self.player.speeding / 2)
         self.draw_backgrounds()
         self.all_sprites.draw(self.surface)
