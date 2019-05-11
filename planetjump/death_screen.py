@@ -24,8 +24,7 @@ class DeathScreen:
 
     def events(self):
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                terminate()
+            handle_close(event)
 
     def update(self):
         self.mouse_handler()

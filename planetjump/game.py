@@ -28,8 +28,7 @@ class Game:
 
     def events(self):
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                terminate()
+            handle_close(event)
 
             if event.type == pygame.KEYDOWN:
                 if pygame.key.get_pressed()[pygame.K_ESCAPE]:
@@ -49,7 +48,6 @@ class Game:
         self.surface.blit(first_bg.image, tuple(first_bg.point))
         self.surface.blit(second_bg.image, tuple(second_bg.point))
 
-    # def swap_backgrounds(self):
     def background_scrolling(self):
         first_bg, second_bg = self.backgrounds
         if first_bg.point.y <= 800:

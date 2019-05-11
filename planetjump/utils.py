@@ -17,6 +17,11 @@ def load_image(filename):
     return pygame.image.load(fullname).convert_alpha()
 
 
+def handle_close(event):
+    if event.type == pygame.QUIT:
+        terminate()
+
+
 def terminate():
     pygame.quit()
     exit()
