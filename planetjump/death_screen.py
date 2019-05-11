@@ -1,6 +1,7 @@
 import pygame
 
-from .other import load_image, terminate
+from planetjump.utils import load_image, handle_close
+
 
 class DeathScreen:
     def __init__(self, surface):

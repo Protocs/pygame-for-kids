@@ -1,7 +1,8 @@
 import pygame
 
-from .other import load_image
-from .death_screen import DeathScreen
+from planetjump.utils import load_image
+from planetjump.death_screen import DeathScreen
+
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, game, surface):

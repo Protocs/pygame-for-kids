@@ -1,7 +1,7 @@
 import pygame
 
-from .other import load_image, terminate
-from .start_screen import StartScreen
+from planetjump.utils import load_image, terminate
+from planetjump.start_screen import StartScreen
 
 
 class PauseScreen:

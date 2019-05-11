@@ -1,7 +1,5 @@
-import pygame
-
-from .other import load_image
-from .platform import Platform
+from planetjump.utils import load_image
+from planetjump.platform import Platform
 
 
 class DisappearingPlatform(Platform):

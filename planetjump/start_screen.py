@@ -1,5 +1,6 @@
 import pygame
-from .other import load_image, terminate
+
+from planetjump.utils import load_image, terminate
 
 
 class StartScreen:

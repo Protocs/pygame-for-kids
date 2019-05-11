@@ -1,7 +1,9 @@
-import pygame
 from random import randint
 
-from .other import load_image
+import pygame
+
+from planetjump.utils import load_image
+
 
 class Platform(pygame.sprite.Sprite):
     def __init__(self, game, surface, y):

@@ -1,6 +1,6 @@
 import pygame
 
-from planetjump.other import SIZE
+from planetjump.utils import SIZE
 from planetjump.start_screen import StartScreen
 from planetjump.game import Game
 

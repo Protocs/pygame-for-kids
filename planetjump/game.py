@@ -1,9 +1,11 @@
 import pygame
-from .other import load_image, terminate
-from .player import Player
-from .platform import Platform
-from .pause_screen import PauseScreen
-from .disappearing_platform import DisappearingPlatform
+
+from planetjump.background import Background
+from planetjump.utils import handle_close
+from planetjump.player import Player
+from planetjump.platform import Platform
+from planetjump.pause_screen import PauseScreen
+from planetjump.disappearing_platform import DisappearingPlatform
 
 
 class Game:
