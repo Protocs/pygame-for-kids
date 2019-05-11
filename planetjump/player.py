@@ -64,7 +64,7 @@ class Player(pygame.sprite.Sprite):
                     self.moving = True
 
                     if sprite == self.game.platforms[-1]:
-                        sprite.rect.y -= 800
+                        sprite.rect.y -= 900
 
     def death(self):
         try:
