@@ -1,8 +1,8 @@
 import pygame
 
-from pygameforkids.other import SIZE
-from pygameforkids.start_screen import StartScreen
-from pygameforkids.game import Game
+from planetjump.other import SIZE
+from planetjump.start_screen import StartScreen
+from planetjump.game import Game
 
 pygame.init()
 screen = pygame.display.set_mode(SIZE)
