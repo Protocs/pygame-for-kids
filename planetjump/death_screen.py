@@ -7,6 +7,7 @@ class DeathScreen:
         self.surface = surface
         self.background = load_image("start_background.png")
         self.death = True
+        self.you_died = load_image("you_died.png")
 
         restart = load_image("restart.png")
         self.restart_images = [(restart, (118, 300)),
@@ -28,6 +29,7 @@ class DeathScreen:
     def update(self):
         self.mouse_handler()
         self.surface.blit(self.background, (0, 0))
+        self.surface.blit(self.you_died, (0, 50))
         self.surface.blit(self.restart[0], self.restart[1])
         pygame.display.flip()
 

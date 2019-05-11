@@ -9,6 +9,7 @@ class PauseScreen:
         self.game = game
         self.surface = game.surface
         self.background = load_image("start_background.png")
+        self.pause = load_image("pause.png")
 
         restart = load_image("restart.png")
         self.restart_images = [(restart, (118, 300)),
@@ -40,6 +41,7 @@ class PauseScreen:
     def update(self):
         self.mouse_handler()
         self.surface.blit(self.background, (0, 0))
+        self.surface.blit(self.pause, (0, 50))
         self.surface.blit(self.restart[0], self.restart[1])
         self.surface.blit(self.menu[0], self.menu[1])
         self.surface.blit(self.continue_button[0], self.continue_button[1])
