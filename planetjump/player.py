@@ -5,6 +5,7 @@ from .other import load_image
 class Player(pygame.sprite.Sprite):
     def __init__(self, game, surface):
         super().__init__(game.all_sprites)
+        self.game = game
         self.surface = surface
         self.image = load_image("ball.png")
         self.rect = self.image.get_rect()
@@ -15,6 +16,13 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         self.key_handle()
+        self.find_collide()
+
+        if self.rect.x <= -23:
+            self.rect.x = 377
+
+        elif self.rect.x >= 378:
+            self.rect.x = -22
 
         if self.speeding > 0 and self.moving:
             self.rect.y -= round(self.speeding)
@@ -28,7 +36,7 @@ class Player(pygame.sprite.Sprite):
 
     def key_handle(self):
         if pygame.key.get_pressed()[pygame.K_LEFT]:
-            self.rect.x -= 2
+            self.rect.x -= 4
         if pygame.key.get_pressed()[pygame.K_RIGHT]:
-            self.rect.x += 2
+            self.rect.x += 4
 

@@ -31,9 +31,9 @@ class Game:
         self.surface.blit(self.backgrounds[0][0], self.backgrounds[0][1])
         self.surface.blit(self.backgrounds[1][0], self.backgrounds[1][1])
         self.all_sprites.draw(self.surface)
+        self.player.update()
         for platform in self.platforms:
             platform.update()
-        self.player.update()
         pygame.display.flip()
 
     def background_scrolling(self):
