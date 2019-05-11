@@ -47,7 +47,13 @@ class Player(pygame.sprite.Sprite):
             self.rect.x += 4
 
     def find_collide(self):
-        pass
+        if self.moving:
+            return
+        colliding_sprites = pygame.sprite.spritecollide(self, self.game.all_sprites, False)
+        colliding_sprites.remove(self)
+        if colliding_sprites:
+            self.speeding = 5
+            self.moving = True
 
     def death(self):
         DeathScreen(self.surface)
