@@ -59,7 +59,7 @@ class Player(pygame.sprite.Sprite):
 
         for sprite in self.game.all_sprites:
             if pygame.sprite.collide_mask(self, sprite) and sprite != self:
-                if self.rect.y + 40 <= sprite.rect.y:
+                if self.rect.y + 35 <= sprite.rect.y:
                     self.speeding = 5
                     self.moving = True
 
